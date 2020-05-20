@@ -17,6 +17,7 @@ const image = require('./controllers/image');
     database : 'smart_brain'
   }
 });*/
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 const db = knex({
   client: 'pg',
   connection: {
