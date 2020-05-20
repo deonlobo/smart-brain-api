@@ -18,12 +18,10 @@ const image = require('./controllers/image');
   }
 });*/
 const db = knex({
-  client: 'mysql',
+  client: 'pg',
   connection: {
-    host : process.env.DATABASE_URL,
-    ssl: {
-    	rejectUnauthorized: false
-  	}
+    connectionString : process.env.DATABASE_URL,
+    ssl:true
   }
 });
 
