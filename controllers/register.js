@@ -13,7 +13,9 @@ const handleRegister = (req,res,db,bcrypt)=>{
 		.then(loginEmail => {
 /*				trx.select('*').from('login').where('email',email )
 				.then(data => {res.json(data;}))*/
-				return trx('users')
+				res.json(loginEmail);
+				
+	/*			return trx('users')
 					.insert({
 
 						email: email,
@@ -23,7 +25,7 @@ const handleRegister = (req,res,db,bcrypt)=>{
 					.then(user => { 	
 						return trx.select('*').from('users').where('id','=',user[0])
 						.then(data => {res.json(data[0]);})
-					})
+					})*/
 
 		})
 		.then(trx.commit)
