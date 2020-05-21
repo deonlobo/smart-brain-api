@@ -4,7 +4,6 @@ const handleRegister = (req,res,db,bcrypt)=>{
 		return res.status(400).json('incorrect form submission');
 	}
 	const hash = bcrypt.hashSync(password);
-	res.json(email);
 	db.transaction(trx => {
 		trx.insert({
 			hash: hash,
@@ -12,7 +11,8 @@ const handleRegister = (req,res,db,bcrypt)=>{
 		})
 		.into('login')
 		.then(loginEmail => {
-
+/*				trx.select('*').from('login').where('email',email )
+				.then(data => {res.json(data;}))*/
 				return trx('users')
 					.insert({
 
@@ -21,7 +21,7 @@ const handleRegister = (req,res,db,bcrypt)=>{
 						joined : new Date()
 					})
 					.then(user => { 	
-						return trx.select('*').from('users').where('id','=',user[0])
+						return trx.select('*').from('users').orderBy('id', 'desc')
 						.then(data => {res.json(data[0]);})
 					})
 
